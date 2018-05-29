@@ -8,7 +8,7 @@ function getDataFromApi(searchTerm, callback) {
     key: 'AIzaSyCKv2Yz18-WhvRC-knLnmlVr6JsWm49cHY',
     q: searchTerm
   }
-  $.getJSON(YOUTUBE_SEARCH, query, callback).fail(showErr);;
+  $.getJSON(YOUTUBE_SEARCH, query, callback).fail(showErr);
 }
 
 function createResults(data){
@@ -16,9 +16,23 @@ function createResults(data){
   let link;
   let result = data.items.map(item => link = `<a href =" https://youtube.com/watch?v=${item.id.videoId}"> <img src="${item.snippet.thumbnails.default.url}"> ${item.snippet.title}</a> <br>`);
 
-  $('.js-search-results').html(result);
+
+
+  $('.js-search-results').prop('hidden', false).html(result);
 
  // console.log(result);
+}
+
+function showErr(err) {
+  const outputElem = $('.js-search-results');
+  
+  const errMsg = (
+    `<p>We couldn't find a user with that screenname!</p>`
+  );
+    
+  outputElem
+    .prop('hidden', false)
+    .html(errMsg);
 }
 
 
