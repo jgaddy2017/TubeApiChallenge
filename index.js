@@ -8,7 +8,7 @@ function getDataFromApi(searchTerm, callback) {
     key: 'AIzaSyCKv2Yz18-WhvRC-knLnmlVr6JsWm49cHY',
     q: searchTerm
   }
-  $.getJSON(YOUTUBE_SEARCH, query, callback);
+  $.getJSON(YOUTUBE_SEARCH, query, callback).fail(showErr);;
 }
 
 function createResults(data){
